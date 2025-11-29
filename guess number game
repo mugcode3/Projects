@@ -1,0 +1,33 @@
+import random
+
+play_again = 'y'
+while play_again.lower() == 'y':
+    gen_num = random.randint(1, 10)
+    attempts = 0
+    guess = -1
+    while guess != gen_num and attempts < 3:
+        try:
+            guess = int(input("Guess a number between 1 and 10: "))
+        except ValueError:
+            print("pick a number between 1 and 10!")
+            continue
+
+        if guess < 1 or guess > 10:
+            print("pick a number between 1 and 10!")
+            continue
+        elif guess > gen_num:
+            print("Too high!")
+        elif guess < gen_num:
+            print("Too low!")
+        attempts += 1
+
+    if guess == gen_num:
+        print(f"Congrats! {gen_num} is the number.")
+    else:
+        print(f"You lose! The number was {gen_num}!")
+    
+    while True:
+        play_again = input("Play again? (y/n): ").lower()
+        if play_again in ('y', 'n'):
+            break
+        print("Please enter 'y' or 'n'.")
